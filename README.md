@@ -19,7 +19,7 @@ Here is the methodology Jonathan Pastor used with Nova:
 	- CURL requests to Glance API endpoints
 	- Until all endpoints work with `ROME`
 
-###Update `ROME` to add new DB requests
+###Update `ROME` to add new DB queries
 As `Nova` is bigger than `Glance`, it is possible that every DB queries needed by `Glance` are already implemented in `ROME`. However we will need to test every endpoint and add the missing queries if needed.
 
 
