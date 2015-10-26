@@ -24,6 +24,9 @@ As suggested by Jonathan, we should use the same approach to update the referenc
 ###Update `ROME` to add new DB queries
 As `Nova` is bigger than `Glance`, it is possible that every DB queries needed by `Glance` are already implemented in `ROME`. However we will need to test every endpoint and add the missing queries if needed.
 
+##Gantt
+
+![Gantt](Gantt.png)
 
 ##Nova
 
