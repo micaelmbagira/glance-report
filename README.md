@@ -50,10 +50,10 @@ As `Nova` is bigger than `Glance`, it is possible that every DB queries needed b
 	- Uses `RomeQuery` to return all compute nodes in a key/value way.
 
 - compute\_node_update
-	- Adds `session.add(compute_ref)` ????
+	- Adds `session.add(compute_ref)` "to ease the session management" ????
 
 - floating\_ip_deallocate
-	- Adds `session.add(result)` ????
+	- Adds `session.add(result)` "to ease the session management" ????
 
 - fixed\_ip\_associate, fixed\_ip\_associate_pool
 	- Logs the info in the log file.    
