@@ -28,6 +28,22 @@ As `Nova` is bigger than `Glance`, it is possible that every DB queries needed b
 
 ![Gantt](Gantt.png)
 
+##Bilan du travail réalisé à la date du 17/11/2015
+
+* Ce qu'on voulait faire
+	* virer les références à db.sqlalchemy dans les test unitaires
+	* créer une couche d'abstraction db.api implémentée soit pas sqlalchemy soit discovery
+	* dupliquer discovery et modifier les sessions
+* Les problèmes/découvertes 
+	* Jonathan a découvert qu'un fichier de configuration existe pour définir le backend employé
+	* erreurs de configuration
+	* vraisemblable problème d'import dans ROME (oslo.db semble ne pas exister, ce serait plutot oslo_db) -> A faire remonter à Jonathan
+	* le test unitaire utilisé semble faire des requête en localhost et non pas tester les méthodes directement
+* Ce qu'on a/va réalisé
+	* fait : dupliquer discovery et modifier les sessions
+	* fork ROME et tester des modifications d'import
+	* réaliser notre propre classe de test unitaire
+
 ##Nova
 
 ###Changes made in `db.discovery.api` to use `ROME`
