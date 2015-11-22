@@ -35,14 +35,26 @@ As `Nova` is bigger than `Glance`, it is possible that every DB queries needed b
 	* créer une couche d'abstraction db.api implémentée soit pas sqlalchemy soit discovery
 	* dupliquer discovery et modifier les sessions
 * Les problèmes/découvertes 
-	* Jonathan a découvert qu'un fichier de configuration existe pour définir le backend employé
-	* erreurs de configuration
+	* Jonathan a découvert qu'un fichier de configuration existe pour définir le back-end employé (dans `glance-api.conf`)
+	* erreurs de configuration dues à des packages ou fichiers de configurations manquants
 	* vraisemblable problème d'import dans ROME (oslo.db semble ne pas exister, ce serait plutot oslo_db) -> A faire remonter à Jonathan
-	* le test unitaire utilisé semble faire des requête en localhost et non pas tester les méthodes directement
 * Ce qu'on a/va réalisé
-	* fait : dupliquer discovery et modifier les sessions
+	* fait : dupliquer discovery et modifier les sessions (utilisation des sessions de ROME)
 	* fork ROME et tester des modifications d'import
 	* réaliser notre propre classe de test unitaire
+
+##Bilan du travail réalisé au 22/11/2015
+* Les problèmes/découvertes   
+	* modifié le back-end dans glance-api.conf lorsque devstack était installé, ça a fonctionné. Avec glance installé seul, ça ne marche pas… pour les expériences, back-end changé en dur dans le code.
+	* problèmes de configuration
+	* nous arrivons à exécuter enfin les tests de la nouvelle implémentation. En revanche les tests échouent du à beaucoup d'erreurs que nous travaillons à débugger
+
+* Ce qu'on a/va réalisé  
+	*  modifié le back-end dans glance-api.conf lorsque devstack était installé, ça a fonctionné. Avec glance installé seul, ça ne marche pas… pour les expériences, back-end changé en dur dans le code.
+	*  abandon de l'implementation d'une interface au profit de la solution ci-dessus.
+	*  besoin d'un composant pour les communications RPC ? après réinstallation au propre de glance, problème a disparu : on conserve les tests unitaires pour tester et on abandonne l'idée de créér nos propres tests unitaires
+
+
 
 ##Nova
 
