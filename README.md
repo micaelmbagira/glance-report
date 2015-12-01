@@ -54,6 +54,14 @@ As `Nova` is bigger than `Glance`, it is possible that every DB queries needed b
 	*  abandon de l'implementation d'une interface au profit de la solution ci-dessus.
 	*  besoin d'un composant pour les communications RPC ? après réinstallation au propre de glance, problème a disparu : on conserve les tests unitaires pour tester et on abandonne l'idée de créér nos propres tests unitaires
 
+##Bilan du travail réalisé au 28/11/2015
+* Les problèmes/découvertes   
+	* La base de donnée Redis semble vide ce qui nous génère une erreur sur laquelle nous travaillons actuellement.
+
+
+* Ce qu'on a/va réalisé 
+	* modifications dans Glance pour utiliser les modèles de Rome ou appeler des méthodes de Rome qui n'ont pas le même nom dans SQLAlchemy.
+	* Ajout des méthodes présentes dans GlanceBase de SQLAlchemy dans les modèles de ROME.
 
 
 ##Nova
