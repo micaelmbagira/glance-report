@@ -63,6 +63,14 @@ As `Nova` is bigger than `Glance`, it is possible that every DB queries needed b
 	* modifications dans Glance pour utiliser les modèles de Rome ou appeler des méthodes de Rome qui n'ont pas le même nom dans SQLAlchemy.
 	* Ajout des méthodes présentes dans GlanceBase de SQLAlchemy dans les modèles de ROME.
 
+##Bilan du travail réalisé au 7/12/2015
+* Les problèmes/découvertes   
+	* D'autres tests (suppression d'images etc.) ne passent pas
+
+
+* Ce qu'on a/va réalisé 
+	* Tous les tests de création d'images fonctionnent
+
 
 ##Nova
 
