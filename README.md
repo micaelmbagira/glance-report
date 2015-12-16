@@ -85,6 +85,8 @@ All the tests in this file create fixtures and test all the features of the API 
 * Ce qu'on a/va réalisé 
 	* 21 tests sur 41 passent.
 	* Nous allons tester ce Glance modifié avec Devstack en gardant ces 21/41 tests verts pour voir si c'est suffisant pour que les fonctionnalités principales de Devstack marchent.
+	* Écrire des tests unitaires dans ROME, en lien avec toutes les modifications que nous avons faites.
+	* Envoyer une pull request pour valider et intégrer notre code.
 
 
 
