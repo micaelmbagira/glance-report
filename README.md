@@ -24,11 +24,16 @@ As suggested by Jonathan, we should use the same approach to update the referenc
 ###Update `ROME` to add new DB queries
 As `Nova` is bigger than `Glance`, it is possible that every DB queries needed by `Glance` are already implemented in `ROME`. However we will need to test every endpoint and add the missing queries if needed.
 
+##Test procedures
+As we edit the database API, we run all the tests available in `tests.unit.v2.test_registry_api.py`.  
+All the tests in this file create fixtures and test all the features of the API by sending query using RPC protocol.
+
 ##Gantt
 
 ![Gantt](Gantt.png)
 
-##Bilan du travail réalisé à la date du 17/11/2015
+##Bilans périodiques
+####Bilan du travail réalisé à la date du 17/11/2015
 
 * Ce qu'on voulait faire
 	* virer les références à db.sqlalchemy dans les test unitaires
@@ -43,7 +48,7 @@ As `Nova` is bigger than `Glance`, it is possible that every DB queries needed b
 	* fork ROME et tester des modifications d'import
 	* réaliser notre propre classe de test unitaire
 
-##Bilan du travail réalisé au 22/11/2015
+####Bilan du travail réalisé au 22/11/2015
 * Les problèmes/découvertes   
 	* modifié le back-end dans glance-api.conf lorsque devstack était installé, ça a fonctionné. Avec glance installé seul, ça ne marche pas… pour les expériences, back-end changé en dur dans le code.
 	* problèmes de configuration
@@ -54,7 +59,7 @@ As `Nova` is bigger than `Glance`, it is possible that every DB queries needed b
 	*  abandon de l'implementation d'une interface au profit de la solution ci-dessus.
 	*  besoin d'un composant pour les communications RPC ? après réinstallation au propre de glance, problème a disparu : on conserve les tests unitaires pour tester et on abandonne l'idée de créér nos propres tests unitaires
 
-##Bilan du travail réalisé au 28/11/2015
+####Bilan du travail réalisé au 28/11/2015
 * Les problèmes/découvertes   
 	* La base de donnée Redis semble vide ce qui nous génère une erreur sur laquelle nous travaillons actuellement.
 
@@ -63,13 +68,25 @@ As `Nova` is bigger than `Glance`, it is possible that every DB queries needed b
 	* modifications dans Glance pour utiliser les modèles de Rome ou appeler des méthodes de Rome qui n'ont pas le même nom dans SQLAlchemy.
 	* Ajout des méthodes présentes dans GlanceBase de SQLAlchemy dans les modèles de ROME.
 
-##Bilan du travail réalisé au 7/12/2015
+####Bilan du travail réalisé au 7/12/2015
 * Les problèmes/découvertes   
 	* D'autres tests (suppression d'images etc.) ne passent pas
 
 
 * Ce qu'on a/va réalisé 
 	* Tous les tests de création d'images fonctionnent
+
+####Bilan du travail réalisé au 16/12/2015
+* Les problèmes/découvertes   
+	* Certains tests de récupération d'image `image_get_all` avec différents filtres en paramètres, ne fonctionnent pas.
+	* Le test `image_update` ne fonctionne pas.
+
+
+* Ce qu'on a/va réalisé 
+	* 21 tests sur 41 passent.
+	* Nous allons tester ce Glance modifié avec Devstack en gardant ces 21/41 tests verts pour voir si c'est suffisant pour que les fonctionnalités principales de Devstack marchent.
+
+
 
 
 ##Nova
