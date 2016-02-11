@@ -27,6 +27,7 @@ Les références à `sqlalchemy` se trouvent dans `db.sqlalchemy.api`. De la mê
 Nous avions décidé que, puisque `Nova` est plus gros en terme de code que `Glance`, il était fort probable que toutes les requêtes à la base de données dont a besoin `Glance` soient déjà implémentée dans `ROME`. Cependant il fallait tester toutes les méthodes de l'API et ajouter les reqûetes manquantes à `ROME` s'il y en avait.
 
 ###Procédure de tests
+####Tests unitaires
 Puisque nous travaillons sur l'API de la base de données de Glance, nous avons décidé de travailler sur tous les tests présents dans `tests.unit.v2.test_registry_api.py`.  
 Dans tous ces tests, des données factices sont créées et toutes les fonctionnalités (opérations CRUD) de l'API sont testéesen envoyant des reqûetes en utilisant le protocole RPC.  
 Pour effectuer ces tests nous utilisions un environnement Windows ou Mac avec PyCharm.  
@@ -39,11 +40,37 @@ Nous avons établi des tests unitaires "critiques" qui devaient absolument passe
 
 Nous avons donc mis de cotés les autres tests présents qui étaient des tests de récupération d'image avec des filtres (par type, avec une pagination etc.)  
 
-###Tests d'intégration
+####Tests d'intégration
 Une fois les tests unitaires critiques validés, nous avons travaillé sur les tests d'intégration.  
-Pour cela nous avons installé Devstack sur une machine virtuelle Ubuntu et remplacé le composant Glance par le nôtre (cela se fait simplement en modifiant l'URL de la source dans le fichier `~/devstack/stackrc`. On peut ensuite installer Devstack en lançant le script d'installation `stack.sh`.
+Pour cela nous avons installé Devstack sur une machine virtuelle Ubuntu et remplacé le composant Glance par le nôtre (cela se fait simplement en modifiant l'URL de la source dans le fichier `~/devstack/stackrc`. On peut ensuite installer Devstack en lançant le script d'installation `stack.sh`.  
+L'installation est validée lorsque le script se termine et que l'on peut démarrer Horizon et créer, modifier, supprimer, récupérer des images.
 
 ##Travail effectué
 ###Glance
+
+- Remplacé les imports de `Query`, `Session`, opérateurs `or_` et `and_` qui étaient issus de `sqlalchemy` par ceux de `ROME`.
+- Retiré la classe `GlanceBase` par celle implémentée dans `ROME`.
+- Modifié la fonction `get_session`. La nôtre retourne simplement une instance de `RomeSession()`.
+- Nous avons remarqué que la méthode `Query.one()` de `sqlalchemy` s'appelle `Query.first()` dans `ROME`, nous avons donc fait cette modification.
+- Ajouté l'annotation `@global_scope` aux classes réprésentant les modèles dans `db.discovery.models`.
+- Dans l'API de Glance, la fonction `_image_update`, il manquait les appels suivants: `session.add(image_ref)` et `session.flush()` requis par l'implémentation de `ROME` pour ajouter une image modifiée dans une session et pour nettoyer la session après la mise à jour.
+
+
+Nous avons aussi rencontrés les problèmes suivants : 
+
+- Dans certains cas, les images de la liste d'images retournées en faisant l'appel `query.all()` étaient en fait une liste d'image. (Exemple: `query.all() = [[a,b], [c,d]]`). Nous avions corrigé ça de manière temporaire en ne récupérant que le premier élément mais Jonathan a corrigé ce bug plus tard dans une nouvelle version de ROME.
+- Obligés de caster les id des images en `string`.
+
+Tous ces changements et problèmes ont été découvert et effectués lors de l'exécution des tests unitaires.
+
 ###ROME
+- Problèmes de packages
+- hard_delete
+- query.limit
+- update functionr return number of results
+- image_update où updated=false
+- paginate_query
+- query.union 
+
+###Déploiement avec script
 ###Difficultés majeures
