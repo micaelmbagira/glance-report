@@ -87,6 +87,7 @@ Nous avons aussi rencontrés les problèmes suivants :
 
 Tous ces changements et problèmes ont été découvert et effectués lors de l'exécution des tests unitaires.
 
+
 ### ROME
 - Problèmes de packages
 - Résolution d'un bug de ROME concernant la suppression.
@@ -96,6 +97,15 @@ Sqlalchemy propose deux types de suppression: `hard_delete` et `soft_delete`. Or
 - image_update où updated=false
 - paginate_query
 - query.union
+
+
+### Retour d'expérience
+Pendant le travail avec glance on a rencontré plusieurs erreurs. On va les lister ainsi que leurs solutions pour faciliter le travail des successeurs éventuels qui vont contribuer au projet.
+
+1. Pour que ROME fonctionne bien, il faut copier le fichier de configuration de ROME `rome/etc/rome.conf` dans  le répértoire `/etc/rome.conf`. Si non, on va obtenir une erreur.
+2. Dans le fichier requirement.txt il faut changer des lignes `Routes!=2.0,!=2.1,>=1.12.3;python_version=='2.7'` et `Routes!=2.0,>=1.12.3;python_version!='2.7'` 
+sur `Routes!=2.0,!=2.1,>=1.12.3#;python_version=='2.7'` et faire pareil pour le fichier test-requirements.txt.  
+
 
 ### Déploiement avec script
 ### Difficultés majeures
