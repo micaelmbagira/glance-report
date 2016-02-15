@@ -16,20 +16,21 @@ Nous avons utilisé un dépôt git en forkant à partir du projet officiel Opens
 Nous avons créé dans glance/db un répertoire "discovery" dans lequel nous avons concentré toutes nos modifications, de manière à réaliser un code non instrusif tant que cela était possible.
 Nous échangions avec Jonathan Pastor pour l'intégration de nos modifications de ROME et la découverte de bugs.
 Notre environnement de travail était Ubuntu 14.04 sur VirtualBox.
+Afin de nous familiariser avec l'environnement Linux, Python et Openstack, nous avons commencé par travailler sur l'installation et le démarrage de Devstack, la version de développement d'Openstack.
+Puis nous avons lancé le projet sur Glance et ROME.
 
 ## Workflow
 
-1. Installer et démarrer Devstack (4)
-2. Installer et démarrer Glance, puis ajouter ROME (4)
-3. S'assurer que Glance utilise ROME et que cela fonctionne.
-  - Recherche sur les tests unitaires (2)
-  - S'assurer que la librairie utilisée par Glance est bien ROME et non pas sqlalchemy (2)
-4. Rendre ROME fonctionnel : Installer toutes les dépendances. (4)
-5. Faire fonctionner les tests unitaires critiques pour un fonctionnement minimal. 4*(1)
-6. Intégrer notre Glance dans Devstack
-  - Travail sur les autres tests unitaires. (2)
-  - Régler des problèmes dans ROME critiques pour le lancement de Devstack. (2)
-7. Finaliser le projet (4)
+1. Installer et démarrer Glance, puis ajouter ROME (4 personnes)
+2. S'assurer que Glance utilise ROME.
+  - Recherche sur les tests unitaires (2 personnes)
+  - S'assurer que la librairie utilisée par Glance est bien ROME et non pas sqlalchemy (2 personnes)
+3. Rendre ROME fonctionnel : Installer toutes les dépendances. (4 personnes)
+4. Faire fonctionner les tests unitaires critiques pour un fonctionnement minimal. 4*(1 personne)
+5. Intégrer notre Glance dans Devstack
+  - Travail sur les autres tests unitaires. (2 personnes)
+  - Régler des problèmes dans ROME critiques pour le lancement de Devstack. (2 personnes)
+6. Finaliser le projet (4 personnes)
   - Réaliser un script pour forcer Devstack à utiliser notre version de Glance après lancement.
   - Rédiger et/ou finaliser les rapports.
 
