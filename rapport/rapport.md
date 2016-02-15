@@ -12,7 +12,7 @@ N'importe quel membre de l'équipe pouvait entrer en contact avec les tuteurs po
 
 ## Méthodologie technique
 
-Nous avons utilisé un dépôt git en forkant à partir du projet officiel Openstack pour Glance, et du projet de Jonathan Pastor pour ROME. Puis nous avons travaillé sur une branche créée à partir de master.
+Nous avons utilisé un dépôt git en faisant un fork à partir du projet officiel Openstack pour Glance, et du projet de Jonathan Pastor pour ROME. Puis nous avons travaillé sur une branche créée à partir de master.
 Nous avons créé dans glance/db un répertoire "discovery" dans lequel nous avons concentré toutes nos modifications, de manière à réaliser un code non instrusif tant que cela était possible.
 Nous échangions avec Jonathan Pastor pour l'intégration de nos modifications de ROME et la découverte de bugs.
 Notre environnement de travail était Ubuntu 14.04 sur VirtualBox.
