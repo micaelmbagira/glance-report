@@ -89,8 +89,9 @@ Tous ces changements et problèmes ont été découvert et effectués lors de l'
 
 ### ROME
 - Problèmes de packages
-- hard_delete
-- query.limit
+- Résolution d'un bug de ROME concernant la suppression.
+Sqlalchemy propose deux types de suppression: `hard_delete` et `soft_delete`. Or ROME avec `Query.delete` produisait un soft_delete, c'est-à-dire que les données étaient marquées supprimées mais non écrasées, à l'inverse du comportement `hard_delete` attendu par les tests unitaires de Glance.
+- Ajout d'une fonction `query.limit` à ROME, qui limite le nombre de résultats renvoyés.
 - update functionr return number of results
 - image_update où updated=false
 - paginate_query
