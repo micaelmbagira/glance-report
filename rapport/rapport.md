@@ -64,7 +64,10 @@ Nous avons aussi rencontrés les problèmes suivants :
 Tous ces changements et problèmes ont été découvert et effectués lors de l'exécution des tests unitaires.
 
 ###ROME
-- Problèmes de packages
+Lors des tests unitaires nous avons aussi rencontrés des problèmes liés à `ROME` : 
+
+- Lors de l'installation, nous avons du changer les imports de type `
+from oslo.db.sqlalchemy...` par `from oslo_db.sqlalchemy...`. Après en avoir parlé avec Jonathan, il se trouve que la version de `oslo` qu'utilise Glance (datant de 3 mois environ) est différente de celle qu'utilise Nova (datant d'1 an environ) et le nom de l'import a changé. Pour résoudre ce problème, Jonathan a pris en compte les 2 cas dans `ROME`.
 - hard_delete
 - query.limit
 - update functionr return number of results
