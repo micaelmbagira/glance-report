@@ -133,3 +133,77 @@ start-glance-registry.sh
 ````bash
 /usr/local/bin/glance-registry --config-file=/etc/glance/glance-registry.conf
 ````
+
+###Calcul des performances
+
+Nous avons mesuré le temps mis par des requêtes élémentaires telles que create, get_all ou delete utilisant la librairie ROME ou la libraire de Sqlalchemy et les comparer. Les mesures ont été prises sur une machine virtuelle ainsi ils ne sont pas représentatif d'un environnement tournant normalement sous Ubuntu, cependant ces mesures peuvent être utilisées à titre comparatif. 
+
+Pour relever ces mesures, nous avons utilisés les tests unitaires présents dans le projet glance. Ces tests sont accessibles au chemin suivant 
+
+````
+glance/glance/tests/unit/v2/test_registry_api.py
+````
+
+L'IDE PyCharm de JetBrains mesure et renvoie le temps pris par chaque test pour s'exécuter. Les temps relevés sont donc les temps mesurés par PyCharm sur les tests unitaires de glance.
+
+| Requête                 | Temps sqlalchemy | Temps ROME |
+| ----------------------- |:----------------:| ----------:|
+| ``image_get``           | right-aligned    | $1600      |
+| ``image_get_all``       | centered         |   $12      |
+| ``image_create``        | are neat         |    $1      |
+| ``image_update``        | right-aligned    | $1600      |
+| ``image_destroy``       | right-aligned    | $1600      |
+| ``image_member_find``   | centered         |   $12      |
+| ``image_tag_create``    | are neat         |    $1      |
+
+
+##Annexes
+###Composition des tests
+####Test get
+* ``test_show : cmd = image_get``
+* ``test_show_unknown : cmd = image_get``
+* ``test_get_index : cmd = image_get_all``
+* ``test_get_index_marker : cmd = image_get_all && image_create(x3)``
+* ``test_get_index_marker_and_name_asc : cmd = image_get_all && image_create``
+* ``test_get_index_marker_and_name_desc : cmd = image_get_all && image_create``
+* ``test_get_index_marker_and_disk_format_asc : cmd = image_get_all && image_create``
+* ``test_get_index_marker_and_disk_format_desc : cmd = image_get_all & image_create``
+* ``test_get_index_marker_and_container_format_asc : cmd = image_get_all && image_create``
+* ``test_get_index_marker_and_container_format_desc : cmd = image_get_all & image_create``
+* ``test_get_index_unknown_marker : cmd = image_get_all``
+* ``test_get_index_limit : cmd = image_get_all && image_create(x2)``
+* ``test_get_index_limit_marker : cmd = image_get_all && image_create(x2)``
+* ``test_get_index_filter_on_user_defined_properties : cmd = image_get_all(x8) && image_create``
+* ``test_get_index_sort_default_created_at_desc: cmd = image_get_all && image_create(x3)``
+* ``test_get_index_sort_name_asc: cmd = get_all && image_create(x3)``
+* ``test_get_index_sort_status_desc: cmd = image_get_all && image_create(x2)``
+* ``test_get_index_sort_disk_format_asc: cmd = image_get_all && image_create(x2)``
+* ``test_get_index_sort_container_format_desc: cmd = image_get_all && image_create(x2)``
+* ``test_get_index_sort_size_asc: cmd = image_get_all && image_create(x2)``
+* ``test_get_index_sort_created_at_asc: cmd = image_get_all && image_create(x2)``
+* ``test_get_index_sort_updated_at_desc: cmd = image_get_all && image_create(x2)``
+* ``test_get_index_sort_multiple_keys_one_sort_dir: cmd = image_get_all(x2) && image_create(x3)``
+* ``test_get_index_sort_multiple_keys_multiple_sort_dirs: cmd = image_get_all(x4) && image_create(x3)``
+* ``test_get_image_members: cmd = image_member_find``
+
+####Test create
+* ``test_create_image: cmd = image_create``
+* ``test_create_image_with_min_disk: cmd = image_create``
+* ``test_create_image_with_min_ram: cmd = image_create``
+* ``test_create_image_with_min_ram_default: cmd = image_create``
+* ``test_create_image_with_min_disk_default: cmd = image_create``
+* ``test_create_image_bad_name: cmd = image_create``
+* ``test_create_image_bad_location: cmd = image_create``
+* ``test_create_image_bad_property: cmd = image_create(x2)``
+
+####Test update
+* ``test_update_image: cmd = image_update``
+* ``test_update_image_bad_tag: cmd = image_tag_create``
+* ``test_update_image_bad_name: cmd = image_update``
+* ``test_update_image_bad_location: cmd = image_update``
+* ``test_update_image_bad_property: cmd = image_update(x2)``
+
+####Test delete
+* ``test_delete_image: cmd = image_get_all(x2) && image_destroy``
+* ``test_delete_image_response: cmd = image_destroy``
+
