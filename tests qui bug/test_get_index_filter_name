@@ -1,0 +1,25 @@
+test_get_index_filter_name
+
+erreur :
+testtools.matcher._impl.MismatchError: 2!= 265
+
+discovery.api
+line 585 :
+img_cond, prop_cond, tag_cond =_make_condition_from_filters({u'name' : u'newname! #123'}, is_public)
+retourne :
+img_cond = sqlalchemy.sql.elements.BinaryExpression
+prop_cond = []
+tag_cond = []
+
+OK
+
+
+line 588 :
+query = _select_images_query(context, img_cond, admin_as_user, member_status, visibilitity)
+fait appel à
+join de rome/core/orm/query.py
+filter de rome/core/orm/query.py
+
+return quelque chose d'illisible
+
+all de rome/core/orm/query.py
