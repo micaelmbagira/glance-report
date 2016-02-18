@@ -148,13 +148,13 @@ L'IDE PyCharm de JetBrains mesure et renvoie le temps pris par chaque test pour 
 
 | Requête                 | Temps SQLAlchemy | Temps ROME |
 | ----------------------- |:----------------:| ----------:|
-| ``image_get``           | right-aligned    | $1600      |
-| ``image_get_all``       | centered         |   $12      |
-| ``image_create``        | are neat         |    $1      |
-| ``image_update``        | right-aligned    | $1600      |
-| ``image_destroy``       | right-aligned    | $1600      |
-| ``image_member_find``   | centered         |   $12      |
-| ``image_tag_create``    | are neat         |    $1      |
+| ``image_get``           | 740ms            | 868ms      |
+| ``image_get_all``       | 550ms            | 712ms      |
+| ``image_create``        | 1450ms           | 1888ms     |
+| ``image_update``        | 700ms            | 776ms      |
+| ``image_destroy``       | 515ms            | 751ms      |
+| ``image_member_find``   | 685ms            | 720ms      |
+| ``image_tag_create``    | 590ms            | 715ms      |
 
 
 ##Annexes
