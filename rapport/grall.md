@@ -32,23 +32,20 @@ Afin de nous familiariser avec l'environnement Linux, Python et Openstack, nous 
 
 ## Travaux réalisés
 
-1. Installer et démarrer Glance, puis ajouter ROME (4 personnes)
-2. S'assurer que Glance utilise ROME.
-  - Recherche sur les tests unitaires (2 personnes)
-  - S'assurer que la librairie utilisée par Glance est bien ROME et non pas sqlalchemy (2 personnes)
-3. Rendre ROME fonctionnel : Installer toutes les dépendances. (4 personnes)
-4. Faire fonctionner les tests unitaires critiques pour un fonctionnement minimal. 4*(1 personne)
-5. Intégrer notre Glance dans Devstack
-  - Travail sur les autres tests unitaires. (2 personnes)
-  - Régler des problèmes dans ROME critiques pour le lancement de Devstack. (2 personnes)
-6. Finaliser le projet (4 personnes)
-  - Réaliser un script pour forcer Devstack à utiliser notre version de Glance après lancement.
-  - Rédiger et/ou finaliser les rapports.
+1. Installation de Devstack, config. VM et familiarisation avec Glance (1 semaine)
+2. Recherches sur Devstack et le travail de Jonathan (1 semaine)
+3. Définir des tests unitaires critiques et les faire fonctionner avec ROME
+(4 semaines)
+4. Intégration de notre Glance modifié dans Devstack (5 semaines)
+ - Travail sur les tests unitaires restants
+ - Régler avec Jonathan les problèmes restants et critiques pour l’installation
+5. Finalisation du projet (2 semaines)
+ - Réalisation d’un script pour changer la version de Glance à chaud
+ - Rédaction des rapports
 
 ## Résultats
 
-Nous avons réussi à déployer notre version de Glance avec Devstack. Les fonctionnalités critiques de Glance, c'est-à-dire la sauvegarde des images de machines virtuelles et des metadata, fonctionnent sur un cluster local. Des tests sur une structure distribuée sont en cours.   
-###### //TODO JONATHAN Grid5000
+Nous avons réussi à déployer notre version de Glance avec Devstack. Les fonctionnalités critiques de Glance, c'est-à-dire la sauvegarde des images de machines virtuelles et des metadata, fonctionnent sur un cluster local. Des tests sur la structure distribuée   [Grid500](https://www.grid5000.fr/) sont en cours.
 
 ## Perspectives
 
