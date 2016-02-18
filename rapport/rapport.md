@@ -99,12 +99,9 @@ from oslo.db.SQLAlchemy...` par `from oslo_db.SQLAlchemy...`. Après en avoir pa
 - Nous avions trouvé un bug dans la fonction `query.update`. Contrairement à l'implémentation de SQLAlchemy, cette fonction ne retournait rien. Ce bug a depuis été réparé.
 - Pendant plusieurs semaines, nous avions été bloqués le problème suivant. Lors de l'installation de Devstack, un test unitaire était chargé de ajouter une image mais l'installation s'interrompait à cause d'une erreur `410 Gone`. L'erreur venait de la fonction `image_update` où la fonction `query.update` retournait le mauvais nombre de résultats récupérés. Cette erreur a aussi été corrigée dans ROME.
 - Vers la fin de l'installation, un test était chargé de lister les images existantes dans la base de données. Ce test tournait sans s'arrêter et bloquait l'installation. Jonathan a découvert que Devstack attendait des des résultats faisant appel à la fonction `paginate_query` qui est dans `glance.db.discovery.api`. L'erreur venait de `query.order_by` et a été corrigée par Jonathan.
-<<<<<<< HEAD
+
 - Enfin, la méthode `query.union` de ROME n'avait pas été implémentée, nous avions regardé le principe d'implémentation de la [méthode dans sqlalchemy](http://docs.sqlalchemy.org/en/latest/orm/query.html#sqlalchemy.orm.query.Query.union) mais cela semblait un peu compliqué pour nous. L'implémentation a été faite depuis par Jonathan.
 - Pour que ROME fonctionne bien, il faut copier le fichier de configuration de ROME `rome/etc/rome.conf` dans  le répértoire `/etc/rome.conf`. Si non, on obtient une erreur: ConfigParser.NoSectionError: No section: 'Cluster'.
-=======
-- Enfin, la méthode `query.union` de ROME n'avait pas été implémentée, nous avions regardé le principe d'implémentation de la [méthode dans SQLAlchemy](http://docs.SQLAlchemy.org/en/latest/orm/query.html#SQLAlchemy.orm.query.Query.union) mais cela semblait un peu compliqué pour nous. L'implémentation a été faite depuis par Jonathan.
-- Pour que ROME fonctionne bien, il faut copier le fichier de configuration de ROME `rome/etc/rome.conf` dans  le répértoire `/etc/rome.conf`. Si non, on va obtenir une erreur.
 
 
 ### Déploiement avec script
@@ -150,15 +147,15 @@ glance/glance/tests/unit/v2/test_registry_api.py
 
 L'IDE PyCharm de JetBrains mesure et renvoie le temps pris par chaque test pour s'exécuter. Les temps relevés sont donc les temps mesurés par PyCharm sur les tests unitaires de glance.
 
-| Requête                 | Temps SQLAlchemy | Temps ROME |
-| ----------------------- |:----------------:| ----------:|
-| ``image_get``           | 740ms            | 868ms      |
-| ``image_get_all``       | 550ms            | 712ms      |
-| ``image_create``        | 1450ms           | 1888ms     |
-| ``image_update``        | 700ms            | 776ms      |
-| ``image_destroy``       | 515ms            | 751ms      |
-| ``image_member_find``   | 685ms            | 720ms      |
-| ``image_tag_create``    | 590ms            | 715ms      |
+| Requête                 | Temps SQLAlchemy | Temps ROME | ROME/SQLalchemy |
+|:----------------------- |:----------------:|:----------:|:---------------:|
+| ``image_get``           | 740ms            | 868ms      |+17%             |
+| ``image_get_all``       | 550ms            | 712ms      |+29%             |
+| ``image_create``        | 1450ms           | 1888ms     |+30%             |
+| ``image_update``        | 700ms            | 776ms      |+11%             |
+| ``image_destroy``       | 515ms            | 751ms      |+46%             |
+| ``image_member_find``   | 685ms            | 720ms      |+05%             |
+| ``image_tag_create``    | 590ms            | 715ms      |+21%             |
 
 
 ##Annexes
