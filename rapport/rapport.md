@@ -6,9 +6,6 @@ Notre travail doit faire suite à celui effectué par Jonathan Pastor qui a cré
 ## Cahier des charges
 Le travail que nous avions à faire était de modifier de la même manière, l'API du composant Glance (chargé de la gestion des images virtuelles) pour qu'elle puisse aussi utilisé les deux ORM.  
 
-## Méthodologie organisationnelle
-Nous avons organisé notre groupe autour d'un chef de projet. Il proposait les réunions et séances de travail. Il récupérait les comptes-rendus des différents membres de l'équipe. Il organisait le partage des tâches en proposant les différentes pistes évoquées par les tuteurs.
-N'importe quel membre de l'équipe pouvait entrer en contact avec les tuteurs pour surmonter des difficultés techniques.
 
 ## Méthodologie technique
 
@@ -21,16 +18,16 @@ Puis nous avons lancé le projet sur Glance et ROME.
 
 ## Workflow
 
-1. Installer et démarrer Glance, puis ajouter ROME (4 personnes)
+1. Installer et démarrer Glance, puis ajouter ROME
 2. S'assurer que Glance utilise ROME.
-  - Recherche sur les tests unitaires (2 personnes)
-  - S'assurer que la librairie utilisée par Glance est bien ROME et non pas sqlalchemy (2 personnes)
-3. Rendre ROME fonctionnel : Installer toutes les dépendances. (4 personnes)
-4. Faire fonctionner les tests unitaires critiques pour un fonctionnement minimal. 4*(1 personne)
+  - Recherche sur les tests unitaires
+  - S'assurer que la librairie utilisée par Glance est bien ROME et non pas sqlalchemy
+3. Rendre ROME fonctionnel : Installer toutes les dépendances.
+4. Faire fonctionner les tests unitaires critiques pour un fonctionnement minimal.
 5. Intégrer notre Glance dans Devstack
-  - Travail sur les autres tests unitaires. (2 personnes)
-  - Régler des problèmes dans ROME critiques pour le lancement de Devstack. (2 personnes)
-6. Finaliser le projet (4 personnes)
+  - Travail sur les autres tests unitaires.
+  - Régler des problèmes dans ROME critiques pour le lancement de Devstack.
+6. Finaliser le projet
   - Réaliser un script pour forcer Devstack à utiliser notre version de Glance après lancement.
   - Rédiger et/ou finaliser les rapports.
 
