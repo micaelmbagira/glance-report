@@ -54,7 +54,7 @@ Nous avons réussi à déployer notre version de Glance avec Devstack. Les fonct
 Une perspective directe de notre projet est sa reprise future par Orange Labs, qui a montré un fort intérêt à notre tuteur.
 Le projet Discovery, et notamment notre contribution, suscite beaucoup d'enthousiasme dans la communauté Openstack. Cela a été souligné à notre tuteur par le directeur de l'ingénierie de la fondation Openstack.
 De plus Anthony Simonet, doctorant à l'école des Mines de Nantes, va utiliser nos résultats dans son travail sur les tests d'intégration de la version Discovery d'Openstack .
-Enfin notre contribution sur le module Glance participe à visibilité générale sur la disbribution et l'échelonnage d'Openstack, et rapproche du but du tout distribué.
+Enfin notre contribution sur le module Glance participe à visibilité générale sur la disbribution et l'échelonnage d'Openstack, et rapproche du but final du projet Discovery.
 
 ## Bilan
 
