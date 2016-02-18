@@ -2,13 +2,17 @@
 
 ## Contexte et sujet
 
-Ce projet d'option s'inscrit dans le cadre du projet de recherche [DISCOVERY, Beyond the Clouds](http://beyondtheclouds.github.io/) mené par l'École des Mines de Nantes dont le but est d'étudier les possibilités d'un Cloud distribué.  
-Notre travail doit faire suite à celui effectué par Jonathan Pastor qui a créé un ORM NoSQL appelé [`ROME`](github.com/badock/rome) pour remplacer `sqlalchemy` utilisé par les différentes API de l'application open-source [Devstack](http://docs.openstack.org/developer/devstack/). Il a aussi modifié l'API composant Nova (qui s'occupe de la gestion des unités de calcul) pour qu'elle puisse au choix utiliser `sqlalchemy`ou `ROME`.
+Ce projet d'option s'inscrit dans le cadre du projet de recherche [DISCOVERY, Beyond the Clouds](http://beyondtheclouds.github.io/) mené par l'École des Mines de Nantes dont le but est d'étudier les possibilités d'un Cloud distribué.
+Le projet Discovery s'intéresse principalement à Openstack, un projet open-source très populaire.
+OpenStack est un ensemble de logiciels permettant de déployer des infrastructures de cloud computing. La technologie possède une architecture modulaire composée de plusieurs projets corrélés (Nova, Swift, Glance...) qui permettent de contrôler les différentes ressources des machines virtuelles telles que la puissance de calcul, le stockage ou encore le réseau inhérents au centre de données sollicité.
+Notre travail fait suite à celui effectué par Jonathan Pastor, doctorant à l'école des Mine de Nantes, qui a travaillé sur le module Nova d'Openstack (qui s'occupe de la gestion des unités de calcul).
+Il a créé un ORM NoSQL appelé [`ROME`](github.com/badock/rome) pour remplacer l'ORM relationnel `sqlalchemy` utilisé par Openstack.
+L'ensemble de ces projets sont codés en Python. Le développement et les tests d'Openstack s'effectue sur les sources github [Devstack](http://docs.openstack.org/developer/devstack/).
+Le but de notre pojet a été d'étendre l'utilisation de ROME au module Glance, le service d'image d'OpenStack. Il permet de gérer les images disque, ainsi que de stocker des sauvegardes et des metadonnées.
 
 ## Problématique
 
-Comment adapter Glance à une structure distribuée ?
-Pour répondre à cette problématique il a fallu faire face à plusieurs problèmes.
+Comment adapter le Glance à une structure distribuée ?
 - Charger toutes les dépendances nécessaires à l'exécution de ROME, Glance et devstack.
 - Régler les fichiers de configuration et les scripts de lancement.
 - Tester les appels de Glance à sa base de donnée (et donc à un cluster dans notre cas).
@@ -50,10 +54,10 @@ Nous avons réussi à déployer notre version de Glance avec Devstack. Les fonct
 
 ## Perspectives
 
-Le projet Discovery en général, et les avancées que nous avons réalisé en particulier, suscitent un grand intérêt de la part de la communauté Openstack. Cela a été souligné à notre tuteur lors d'une convention réunissant les principaux acteurs du projet.
-Notamment de la part d'Orange Labs, qui travaille déjà sur un autre module pour la distribtion d'Openstack.
-Un doctorant de l'école Mines Nantes qui travaille sur les tests d'intégration de la version Discovery d'Openstack va utiliser nos résultats.
-Enfin notre contribution participe à visibilité générale sur la disbribution et l'échelonnage d'Openstack.
+Une perspective directe de notre projet est sa reprise future par Orange Labs, qui a montré un fort intérêt à notre tuteur.
+Le projet Discovery, et notamment notre contribution, suscite beaucoup d'enthousiasme dans la communauté Openstack. Cela a été souligné à notre tuteur par le directeur de l'ingénierie de la fondation Openstack.
+De plus Anthony Simonet, doctorant à l'école des Mines de Nantes, va utiliser nos résultats dans son travail sur les tests d'intégration de la version Discovery d'Openstack .
+Enfin notre contribution sur le module Glance participe à visibilité générale sur la disbribution et l'échelonnage d'Openstack, et rapproche du but du tout distribué.
 
 ## Bilan
 
