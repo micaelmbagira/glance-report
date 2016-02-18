@@ -6,11 +6,12 @@ Ce projet d'option s'inscrit dans le cadre du projet de recherche [DISCOVERY, Be
 OpenStack est un ensemble de logiciels permettant de déployer des infrastructures de cloud computing. La technologie possède une architecture modulaire composée de plusieurs projets corrélés (Nova, Swift, Glance...) qui permettent de contrôler les différentes ressources des machines virtuelles telles que la puissance de calcul, le stockage ou encore le réseau inhérents au centre de données sollicité.  
 Notre travail fait suite à celui effectué par Jonathan Pastor, doctorant à l'école des Mine de Nantes, qui a travaillé sur le module Nova d'Openstack (qui s'occupe de la gestion des unités de calcul). Il a créé un ORM NoSQL appelé [ROME](github.com/badock/rome) pour remplacer l'ORM relationnel `sqlalchemy` utilisé par Openstack.  
 L'ensemble de ces projets sont codés en Python. Le développement et les tests d'Openstack s'effectue sur les sources github [Devstack](http://docs.openstack.org/developer/devstack/).
-Le but de notre pojet a été d'étendre l'utilisation de ROME au module Glance, le service d'image d'OpenStack. Il permet de gérer les images disque, ainsi que de stocker des sauvegardes et des metadonnées.
+Le but de notre projet a été d'étendre l'utilisation de ROME au module Glance, le service d'image d'OpenStack. Il permet de stocker et récupérer des images de machines virtuelles, ainsi que leurs metadonnées.
 
 ## Problématique
 
 Comment adapter le Glance à une structure distribuée ?
+
 - Charger toutes les dépendances nécessaires à l'exécution de ROME, Glance et devstack.
 - Régler les fichiers de configuration et les scripts de lancement.
 - Tester les appels de Glance à sa base de donnée (et donc à un cluster dans notre cas).
