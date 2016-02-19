@@ -12,7 +12,7 @@ Le but de notre projet a été d'étendre l'utilisation de ROME au module Glance
 
 Comment adapter le composant Glance à une structure distribuée ?
 
-###Cahier des charges/Objectifs
+### Cahier des charges/Objectifs
 
 - Modifier Glance pour qu'il utilise l'ORM NoSQL : ROME
 - Tester les appels de Glance à sa base de données NoSQL (et donc à un cluster dans notre cas).
@@ -46,10 +46,11 @@ Afin de nous familiariser avec l'environnement Linux, Python et OpenStack, nous 
 
 ## Résultats
 
-Dans un premier temps, nous avons réussi à faire fonctionner 21 tests unitaires sur 41, ces 21 tests étaient jugés critiques pour aller plus loin dans le prototype. Ces tests testaient les opérations CRUD (Create, Read, Update, Delete) de l'API de Glance. Les tests restants servaient à récupérer des images avec différents filtres (en fonction du type, trié par nom, etc.). 
+Dans un premier temps, nous avons réussi à faire fonctionner 21 tests unitaires sur 41, ces 21 tests étaient jugés critiques pour aller plus loin dans le prototype. Ces tests testaient les opérations CRUD (Create, Read, Update, Delete) de l'API de Glance. Les tests restants servaient à récupérer des images avec différents filtres (en fonction du type, trié par nom, etc.).
 
 Nous avons ensuite, réussi à déployer notre version de Glance avec DevStack. Pour cela, il faut lancer l'installation de DevStack en remplaçant le composant Glance d'origine par le notre. L'installation effectue plusieurs tests basiques pour chaque composant dont les opérations CRUD pour Glance. Si un des tests ne passe pas, l'installation s'interrompt.  
-Les fonctionnalités critiques de Glance, c'est-à-dire la sauvegarde des images de machines virtuelles et des metadata, fonctionnent sur un cluster local. Des tests sur la structure distribuée   [Grid500](https://www.grid5000.fr/) sont en cours.
+Les fonctionnalités critiques de Glance, c'est-à-dire la sauvegarde des images de machines virtuelles et des metadata, fonctionnent sur un cluster local. Des tests sur la structure distribuée   [Grid500](https://www.grid5000.fr/) sont en cours.  
+Nos modifications et les résolutions de bug induits par nos recherches ont été intégrés à [ROME](github.com/badock/rome) sur la branche master. Nous avons travaillé de notre côté sur un fork [ROME/gsi-cloud](https://github.com/micaelmbagira/rome/commits/gsi-cloud). La version de glance que nous avons utilisé et modifiée est [Glance/Discovery](https://github.com/BeyondTheClouds/glance/tree/discovery).
 
 ## Perspectives
 
@@ -62,7 +63,7 @@ Enfin notre contribution sur le module Glance participe à visibilité général
 
 #### Compétences acquises
 
-Nous avons amélioré notre connaissance de Python et de son environnement (IDE, tests unitaires, débuggage, typage dynamique, etc.) , et nous nous sommes familiarisés avec l'architecture d'Openstack. De plus, nous avons aussi amélioré nos connaissances dans l'environnement Unix et la manipulation du terminal dans sa globalité. Enfin, nous avons dû nous confronter à un projet de recherche de très grande ampleur. 
+Nous avons amélioré notre connaissance de Python et de son environnement (IDE, tests unitaires, débuggage, typage dynamique, etc.) , et nous nous sommes familiarisés avec l'architecture d'Openstack. De plus, nous avons aussi amélioré nos connaissances dans l'environnement Unix et la manipulation du terminal dans sa globalité. Enfin, nous avons dû nous confronter à un projet de recherche de très grande ampleur.
 
 #### Conclusion
 
