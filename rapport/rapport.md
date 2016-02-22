@@ -16,6 +16,43 @@ Notre environnement de travail était Ubuntu 14.04 sur VirtualBox.
 Afin de nous familiariser avec l'environnement Linux, Python et Openstack, nous avons commencé par travailler sur l'installation et le démarrage de Devstack, la version de développement d'Openstack.
 Puis nous avons lancé le projet sur Glance et ROME.
 
+##Installation
+###Installer ROME
+1. `git clone https://github.com/badock/rome.git`
+2. `cd rome`
+3. `sudo python setup.py install`
+
+NB: Pour configurer ROME, il faut mettre dans `/etc/rome/rome.conf` la configuration (voici un [exemple](https://github.com/micaelmbagira/glance-report/blob/master/rome.conf) de configuration qui fonctionne).
+
+###Configurer Glance
+Pour l'instant, Glance est codé en dur pour utiliser l'API discovery (c'est à dire l'API que nous avons modifié pour utiliser ROME). Ce changement est fait ici : https://github.com/BeyondTheClouds/glance/commit/d16f25ac6589830c63904b5dd5bccb68333b6dfe  
+Pour être plus modulaire, il suffit de remettre la ligne `api = importutils.import_module(CONF.data_api)` et de configurer le choix entre ROME et SQLAlchemy dans le fichier `/etc/glance/glance-api.conf` (voici un [exemple](https://github.com/openstack/glance/blob/master/etc/glance-api.conf)):  
+**Décommentez et changez `data_api = glance.db.sqlalchemy.api` en `data_api = glance.db.discovery.api`.**
+
+
+###Installer DevStack
+1. `git clone https://github.com/openstack-dev/devstack`
+2. `cd devstack`
+3. Modifier le fichier `stackrc` pour qu'il utilise notre Glance. Pour cela changer  
+
+````bash
+# image catalog service                                                                                                                                                              
+GLANCE_REPO=${GLANCE_REPO:-${GIT_BASE}/openstack/glance}
+GLANCE_BRANCH=${GLANCE_BRANCH:-master}
+````
+en
+
+````bash
+# image catalog service                                                                                                                                                              
+GLANCE_REPO=${GLANCE_REPO:-https://github.com/beyondtheclouds/glance.git}
+GLANCE_BRANCH=${GLANCE_BRANCH:-discovery}
+````
+
+Ensuite, lancer `./stack.sh` ou `./run_openstack` (que vous pouvez trouver [ici](https://github.com/micaelmbagira/glance-report/blob/master/run_openstack.sh) et qui permet de vider la base de données, et lancer `./unstack.sh` et `./stack.sh` à la suite).
+
+Lorsque l'installation est terminée, l'interface est disponible à `localhost`. 
+NB: Pour configurer Devstack, il faut mettre dans `devstack/local.conf` la configuration (voici un [exemple](https://github.com/openstack-dev/devstack/blob/master/samples/local.conf)).
+
 ## Workflow
 
 1. Installer et démarrer Glance, puis ajouter ROME
