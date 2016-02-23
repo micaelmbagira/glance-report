@@ -1,0 +1,3 @@
+# /usr/local/bin/glance-api --config-file=/etc/glance/glance-api.conf & echo $! >/opt/stack/status/stack/g-api.pid; fg || echo "g-api failed to start" | tee "/opt/stack/status/stac\
+k/g-api.failure"                                                                                                                                                                     
+/usr/local/bin/glance-api --config-file=/etc/glance/glance-api.conf
