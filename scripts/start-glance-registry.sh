@@ -1,0 +1,3 @@
+#/usr/local/bin/glance-registry --config-file=/etc/glance/glance-registry.conf & echo $! >/opt/stack/status/stack/g-reg.pid; fg || echo "g-reg failed to start" | tee "/opt/stack/st\
+atus/stack/g-reg.failure"                                                                                                                                                            
+/usr/local/bin/glance-registry --config-file=/etc/glance/glance-registry.conf
