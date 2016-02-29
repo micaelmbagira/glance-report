@@ -245,3 +245,36 @@ L'IDE PyCharm de JetBrains mesure et renvoie le temps pris par chaque test pour 
 * ``test_delete_image: cmd = image_get_all(x2) && image_destroy``
 * ``test_delete_image_response: cmd = image_destroy``
 
+#FAQ
+##Installation et tests
+- Quelle version d'Ubuntu ?
+	- Nous conseillons d'utiliser Ubuntu 14.04 minimum
+- Comment tester Glance de manière isolé ?
+	- Glance a plusieurs séries de tests unitaires à disposition. Pour tester l'API, les tests sont dans `glance/glance/tests/unit/v2/test_registry_api.py`. Pour les exécuter, il suffit d'exécuter les classes concernées avec l'IDE PyCharm.
+- Je veux changer les sources de certains composants de DevStack, comment faire ?
+	- Les sources se trouvent dans le fichier `devstack/stackrc`. Pour chaque composant, il suffit de modifier les variables `GLANCE_REPO` et `GLANCE_BRANCH` (ici exemple de Glance).
+- Comment démarrer la base de données ?
+	- Il faut installer `redis-server` et le démarrer ([http://redis.io](http://redis.io). Vous pouvez en plus installer [`rdm`](http://redisdesktop.com/) pour visualiser la base de données.
+- Lorsque j'exécute les tests, je rencontre des problèmes de dépendances manquantes du type `ImportError: No module named **`
+	- Asurez d'avoir installé toutes les dépendances : pour Glance, exécuter `pip install -r requirements.txt` et `pip install -r test-requirements.txt`.
+	- Pour ROME, éxécuter `pip install -r requirements.txt`.
+- Les tests unitaires de l'API Glance ne passent pas :
+	- Assurez vous d'avoir vidé la base de données. Vous pouvez le faire en lancant un shell Redis avec la commande `redis-cli` et en exécutant `flushdb`.
+- Où trouver les logs des différents services installés par DevStack ?
+	- Une fois que les services OpenStack sont déployés, vous pouvez voir les logs en direct en lançant la commande `screen -x` depuis un terminal. Ensuite, avec `Ctrl-A` et puis `"` vous pouvez lister les screen disponibles et en choisir un en particulier.
+- Lors de l'exécution des tests unitaires j'obtiens l'erreur suivante `policy.json missing`
+	- Assurez vous d'être dans le bon répertoire pour exécuter les tests. Pour vérifier dans PyCharm, cliquez sur le menu déroulant à coté de la flèche verte, cliquez sur `Edit configuration` et vérifiez que le chemin est bien `/path/to/repo/glance` 
+
+##Erreurs
+- `ConfigParser.NoSectionError: No section: 'Cluster'`
+	- Assurez vous d'avoir le fichier `rome.conf` dans `/etc/rome`.
+- `fatal error: ffi.h: No such file or directory`
+	- Exécutez la commande `sudo apt-get libffi-dev`.
+- `fatal error: openssl/aes.h: No such file or directory`
+	- Exécutez la commande `sudo apt-get libssl-dev`.
+- `error : pg_config executable not found.`
+	- Exécutez la commande `sudo apt-get libpq-dev`
+
+	
+###Après avoir lu cette FAQ, ça ne marche toujours pas, que faire ?
+Vous pouvez contacter les responsables de ce projet.
